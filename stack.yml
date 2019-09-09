@@ -1,7 +1,7 @@
 version: "3.5"
 services:
   jenkins:
-    image: jenkins/jenkins:2.191
+    image: hatlonely/jenkins:1.0.0
     hostname: jenkins
     user: root
     deploy:
@@ -12,8 +12,8 @@ services:
     #   - "8080:8080"
     #   - "50000:50000"
     volumes:
-      - "${HOME}/var/docker/jenkins/data:/var/jenkins_home"
-      - "${HOME}/var/docker:/var/docker"
+      - "/var/docker/jenkins/data:/var/jenkins_home"
+      - "/var/docker:/var/docker"
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "/bin/docker:/usr/bin/docker"
     networks:
