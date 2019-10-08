@@ -1,8 +1,8 @@
 version: "3.5"
 services:
-  jenkins:
-    image: hatlonely/jenkins:1.0.0
-    hostname: jenkins
+  ${repository}:
+    image: hatlonely/${repository}:${version}
+    hostname: ${repository}
     user: root
     deploy:
       replicas: 1
@@ -12,12 +12,12 @@ services:
     #   - "8080:8080"
     #   - "50000:50000"
     volumes:
-      - "/var/docker/jenkins/data:/var/jenkins_home"
+      - "/var/docker/${repository}/data:/var/jenkins_home"
       - "/var/docker:/var/docker"
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "/bin/docker:/usr/bin/docker"
     networks:
-      - jenkinsnet
+      - ${repository}net
 networks:
-  jenkinsnet:
-    name: jenkinsnet
+  ${repository}net:
+    name: ${repository}net

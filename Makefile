@@ -1,4 +1,4 @@
-version=1.0.0
+version=$(shell git describe --tags)
 repository=jenkins
 user=hatlonely
 
@@ -21,7 +21,7 @@ remove:
 
 build:
 	docker build --tag=${user}/${repository}:${version} .
-	${sedi} 's/image: ${user}\/${repository}:.*$$/image: ${user}\/${repository}:${version}/g' stack.yml
+	cat stack.tpl.yml | sed 's/\$${version}/${version}/g' | sed 's/\$${repository}/${repository}/g' > stack.yml
 
 push:
 	docker push ${user}/${repository}:${version}
