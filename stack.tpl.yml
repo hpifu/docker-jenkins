@@ -18,6 +18,11 @@ services:
       - "/bin/docker:/usr/bin/docker"
     networks:
       - ${repository}net
+      - mysqlnet
+
 networks:
   ${repository}net:
     name: ${repository}net
+  mysqlnet:
+    external: true
+    name: mysqlnet
