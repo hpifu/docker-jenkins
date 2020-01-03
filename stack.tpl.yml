@@ -17,7 +17,8 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "/bin/docker:/usr/bin/docker"
     networks:
-      - ${repository}net
+      - online
 networks:
-  ${repository}net:
-    name: ${repository}net
+  online:
+    external: true
+    name: online
